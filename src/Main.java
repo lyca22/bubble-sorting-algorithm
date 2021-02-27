@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -48,8 +49,7 @@ public class Main {
 	}
 	
 	public static void exportData(String fn) throws IOException {
-		PrintWriter pw = new PrintWriter(fn);
-		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(fn));
 		String formatString;
 		
 		for(int i = 0; i < caseListOutput.length; i++) {
@@ -57,10 +57,10 @@ public class Main {
 					.replace(",", "")
 					.replace("[", "")
 					.replace("]", "");
-			pw.println(formatString);
+			bw.write(formatString + "\n");
 		}
 		
-		pw.close();
+		bw.close();
 		System.out.println("Data exported to file " + fn);
 	}
 	
